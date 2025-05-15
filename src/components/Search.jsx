@@ -3,9 +3,13 @@ import { SearchIcon } from "lucide-react";
 
 import React from "react";
 
-export const Search = ({ getWeather, onChange }) => {
+export const Search = ({ getWeather, onChange ,suggestions, setSuggestions, setCity}) => {
+
+//  const [input, setInput] = useState("");
   const getInput = (event) => {
-    onChange(event.target.value);
+    const value =(event.target.value)
+    //  setInput(value);
+    onChange(value);
   };
   return (
     <div className="absolute top-[120px] left-40 z-30">
@@ -18,6 +22,19 @@ export const Search = ({ getWeather, onChange }) => {
           className="w-full py-4 pl-3 pr-6 text-[32px] font-bold text-gray-400 outline-none"
           onChange={getInput}
         />
+        {/* {suggestions.length> 0 && (
+          <ul className="absolute bg-white border w-full mt-1 max-h-[200px] overflow-y-auto z-50">
+            {suggestions.map ((city,idx)=>(
+              <li key={idx} className="p-2 hover:bg-gray-200 cursor-pointer" onClick={()=> {
+                setCity(city.name)
+                setSuggestions([])
+              }}>
+{city.name},{city.country}
+              </li>
+            ))}
+
+          </ul>
+        )} */}
         <button
           onClick={getWeather}
           className="border p-2 w-fit text-2xl  border-indigo-600"

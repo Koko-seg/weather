@@ -20,9 +20,12 @@ export const Container = ({ weather }) => {
         <div className="text-transparent bg-clip-text font-extrabold text-[110px] -mt-10 bg-gradient-to-b from-black to-white">
           <p> {weather?.current?.temp_c}</p>
         </div>
-        <h3 className="text-amber-500 font-extrabold mb-4 h-6">
+        <div className="flex items-center gap-5">
+        <h3 className="text-amber-500 font-extrabold mb-4">
           {weather?.forecast?.forecastday[0]?.day?.condition?.text}
         </h3>
+        <img className="" src={weather?.forecast?.forecastday[0]?.day?.condition?.icon} alt="jijgee"/>
+        </div>
         <div className="flex items-center justify-between">
           <HomeIcon className="w-[32px] h-[32px] text-gray-800" />
           <MapPin className="w-[32px] h-[32px] text-gray-300" />
