@@ -1,17 +1,15 @@
 import { HeartIcon, HomeIcon, MapPin, UserIcon } from "lucide-react";
-import React, { useState } from "react";
 
-export const Container = (get) => {
-  const [weather, setWeatherData] = useState({});
+export const Container = ({ weather }) => {
   return (
     <div className="w-103 h-207 rounded-[48px] bg-white/750 backdrop-blur-lg shadow-lg absolute z-20">
       <div className="py-14 px-10 space-y-12">
         <div className="flex justify-between items-center">
           <div className="space-y-2">
-            <h1 className="text-gray-400">May 13, 2025</h1>
+            <h1 className="text-gray-400">{weather?.current?.last_updated}</h1>
 
             <h2 className="text-gray-900 font-extrabold text-5xl">
-              Ulaanbaatar
+              {weather?.location?.name}
             </h2>
           </div>
           <MapPin className="w-[32px] h-[32px] text-gray-700" />
@@ -20,9 +18,11 @@ export const Container = (get) => {
       </div>
       <div className="px-12">
         <div className="text-transparent bg-clip-text font-extrabold text-[110px] -mt-10 bg-gradient-to-b from-black to-white">
-          10.2 <p> {weather?.forecast?.forecastday[0].day.maxtemp_c}</p>
+          <p> {weather?.current?.temp_c}</p>
         </div>
-        <h3 className="text-amber-500 font-extrabold mb-12 h-6">Sunny</h3>
+        <h3 className="text-amber-500 font-extrabold mb-4 h-6">
+          {weather?.forecast?.forecastday[0]?.day?.condition?.text}
+        </h3>
         <div className="flex items-center justify-between">
           <HomeIcon className="w-[32px] h-[32px] text-gray-800" />
           <MapPin className="w-[32px] h-[32px] text-gray-300" />

@@ -23,10 +23,10 @@ export const Circle = () => {
             </span>
           </div>
         </div>
-        <div className="relative">
+        {/* <div className="relative">
           <div className="absolute -bottom-[114px] right-[9px] w-10 h-14 bg-[#F3F4F6]"></div>
           <div className="absolute -bottom-[120px] right-[3px] w-20 h-16 bg-[#0F141E] rounded-bl-full"></div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

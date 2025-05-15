@@ -1,9 +1,12 @@
 // import Image from "next/image";
 import { SearchIcon } from "lucide-react";
-import axios from "axios";
-import React, { useState } from "react";
 
-export const Search = (props) => {
+import React from "react";
+
+export const Search = ({ getWeather, onChange }) => {
+  const getInput = (event) => {
+    onChange(event.target.value);
+  };
   return (
     <div className="absolute top-[120px] left-40 z-30">
       <div className="flex items-center w-[567px] h-80px rounded-[48px] bg-white pl-[30.52px]">
@@ -13,9 +16,10 @@ export const Search = (props) => {
           type="text"
           placeholder="Search"
           className="w-full py-4 pl-3 pr-6 text-[32px] font-bold text-gray-400 outline-none"
+          onChange={getInput}
         />
         <button
-          onClick={props.onClick}
+          onClick={getWeather}
           className="border p-2 w-fit text-2xl  border-indigo-600"
         >
           Search
