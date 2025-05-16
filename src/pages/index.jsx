@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [weather, setWeatherData] = useState({});
   const [city, setCity] = useState("Tokyo");
-  const [suggestions, setSuggestions]= useState ([])
+  const [filteredCity, setFilteredCity] = useState([]);
+  const [error, setError] = useState("");
 
   const getWeather = async () => {
     try {
@@ -16,16 +17,38 @@ export default function Home() {
       );
 
       const data = await response.json();
-console.log (data)
+      console.log(data);
       setWeatherData(data);
-      // return data;
     } catch (error) {
       console.error(error);
     }
   };
   console.log(weather);
 
+  const getCities = async () => {
+    try {
+      const response = await fetch(
+        "https://countriesnow.space/api/v0.1/countries"
+      );
+      const data = await response.json();
+
+      const result = data?.data?.filter((city) => {
+        const findCities = city.cities.find(
+          (findCities) => findCities === searchValue
+        );
+        return findCities;
+      });
+      const city = result[0].cities.find((city) => city === searchValue);
+      setSearchValue(city);
+    } catch (error) {
+      setError("No location found");
+    }
+    const allCities = city.flatMap((city) => city[(1, 2)]);
+    console.log(allCities);
+  };
+
   useEffect(() => {
+    getCities();
     getWeather();
   }, []);
 
@@ -33,9 +56,13 @@ console.log (data)
     <div className="flex w-[100wv] h-[100vh]">
       <div className="bg-[#f3f4f6] w-[50%]  relative flex flex-col items-center justify-center ">
         <div className="relative  w-[800px] h-[1200px]  my-0 mx-auto flex items-center justify-center">
-          <Search onChange={setCity} getWeather={getWeather}   suggestions={suggestions}
+          <Search
+            onChange={setCity}
+            getWeather={getWeather}
+            suggestions={suggestions}
             setSuggestions={setSuggestions}
-            setCity={setCity}/>
+            setCity={setCity}
+          />
           <img
             src="/weather/sun-little.webp"
             className="w-[174px] h-[174px] absolute top-[100px] left-30 z-0"
@@ -44,7 +71,7 @@ console.log (data)
           <Container weather={weather} />
         </div>
       </div>
-      
+
       <Circle />
 
       <div className="bg-[#0F141E] w-[50%] relative flex flex-col items-center justify-center">
