@@ -1,5 +1,5 @@
 // import Image from "next/image";
-import { SearchIcon } from "lucide-react";
+import { SearchIcon, MapPin } from "lucide-react";
 
 import React from "react";
 
@@ -18,13 +18,18 @@ export const Search = ({ getWeather, handleChange, setCity, filteredCity }) => {
         <input
           type="text"
           placeholder="Search"
-          className="w-full py-4 pl-3 pr-6 text-[32px] font-bold text-gray-400 outline-none"
+          className="w-full py-4 pl-3 pr-6 text-[32px] font-bold outline-none"
           onChange={handleChange}
         />
       </div>
-      <div>
+      <div className="w-full bg-grey-600 flex flex-col gap-[2px] ">
         {filteredCity.map((city, index) => (
-          <div key={index} onClick={() => changeWeather(city)}>
+          <div
+            className="cursor-pointer"
+            key={index}
+            onClick={() => changeWeather(city)}
+          >
+            <MapPin className="flex flex-col" />
             {city}
           </div>
         ))}
