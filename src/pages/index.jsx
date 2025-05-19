@@ -9,6 +9,7 @@ export default function Home() {
   const [city, setCity] = useState("Tokyo");
   const [filteredCity, setFilteredCity] = useState([]);
   const [error, setError] = useState("");
+  const [cities, setCities] = useState([]);
 
   const getWeather = async () => {
     try {
@@ -17,13 +18,12 @@ export default function Home() {
       );
 
       const data = await response.json();
-      console.log(data);
+
       setWeatherData(data);
     } catch (error) {
-      console.error(error);
+      throw new Error(error);
     }
   };
-  console.log(weather);
 
   const getCities = async () => {
     try {
@@ -32,36 +32,38 @@ export default function Home() {
       );
       const data = await response.json();
 
-      const result = data?.data?.filter((city) => {
-        const findCities = city.cities.find(
-          (findCities) => findCities === searchValue
-        );
-        return findCities;
-      });
-      const city = result[0].cities.find((city) => city === searchValue);
-      setSearchValue(city);
+      setCities(data.data);
     } catch (error) {
       setError("No location found");
     }
-    const allCities = city.flatMap((city) => city[(1, 2)]);
-    console.log(allCities);
   };
 
   useEffect(() => {
     getCities();
     getWeather();
   }, []);
+  const handleChange = (event) => {
+    setCity(event.target.value);
+    const citiesAndCountry = cities.flatMap((country) =>
+      country.cities.map((city) => `${city}, ${country.country}`)
+    );
+
+    const filteredCities = citiesAndCountry
+      ?.filter((item) => item.toLowerCase().startsWith(city.toLowerCase()))
+      .slice(0, 4);
+
+    setFilteredCity(filteredCities);
+  };
 
   return (
     <div className="flex w-[100wv] h-[100vh]">
       <div className="bg-[#f3f4f6] w-[50%]  relative flex flex-col items-center justify-center ">
         <div className="relative  w-[800px] h-[1200px]  my-0 mx-auto flex items-center justify-center">
           <Search
-            onChange={setCity}
+            handleChange={handleChange}
             getWeather={getWeather}
-            suggestions={suggestions}
-            setSuggestions={setSuggestions}
             setCity={setCity}
+            filteredCity={filteredCity}
           />
           <img
             src="/weather/sun-little.webp"
