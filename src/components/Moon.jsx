@@ -27,8 +27,9 @@ export const Moon = ({ weather }) => {
           </h3>
           <img
             className="w-16 h-16"
-            src={`https:${weather.current.condition.icon}`}
-            alt={weather.current.condition.text}
+            // src={`https:${weather.current.condition.icon}`}
+            src={weather?.current?.condition?.icon || '/default-icon.png'}
+            alt={weather?.current?.condition?.text}
           />
         </div>
         <div className="flex items-center justify-between">
