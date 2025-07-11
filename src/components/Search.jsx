@@ -1,36 +1,43 @@
 // import Image from "next/image";
 import { SearchIcon, MapPin } from "lucide-react";
 
-import React from "react";
+import React, { useRef } from "react";
 
-export const Search = ({ getWeather, handleChange, setCity, filteredCity }) => {
+export const Search = ({ getWeather, handleChange, setCity, filteredCity, setFilteredCity  }) => {
+  const inputRef = useRef(null);
+  
   const changeWeather = (value) => {
     setCity(value.split(",")[0]);
     getWeather();
+    setFilteredCity([]); 
+    if (inputRef.current) {
+      inputRef.current.value = ""; 
+    }
   };
   console.log(filteredCity);
 
   return (
-    <div className="absolute top-[120px] left-40 z-30">
-      <div className="flex items-center w-[567px] h-80px rounded-[48px] bg-white pl-[30.52px]">
-        <SearchIcon className="w-[35px] h-[35px] text-gray-500  z-30" />
+    <div className="relative w-full max-w-[567px]">
+      <div className="flex items-center rounded-full bg-white  px-4 py-2 shadow-md z-10 relative">
+        <SearchIcon className="w-5 h-5 text-gray-400" />
 
         <input
+         ref={inputRef}
           type="text"
           placeholder="Search"
-          className="w-full py-4 pl-3 pr-6 text-[32px] font-bold outline-none"
+          className="w-full px-3 py-1 text-lg font-medium outline-none text-gray-800 placeholder:text-gray-400"
           onChange={handleChange}
         />
       </div>
-      <div className="w-full bg-grey-600 flex flex-col gap-[2px] ">
+      <div className="relative mt-5 w-full max-w-[567px] mx-auto z-30">
         {filteredCity.map((city, index) => (
           <div
-            className="cursor-pointer"
+            className="cursor-pointer hover:bg-gray-100 transition-colors duration-200"
             key={index}
             onClick={() => changeWeather(city)}
           >
-            <MapPin className="flex flex-col" />
-            {city}
+            <MapPin className="w-4 h-4 text-gray-500" />
+            <span className="text-gray-700 text-sm">{city}</span>
           </div>
         ))}
       </div>

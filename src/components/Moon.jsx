@@ -9,7 +9,7 @@ export const Moon = ({ weather }) => {
             <h1 className="text-gray-400">
               {weather?.forecast?.forecastday[0]?.hour[23]?.time}
             </h1>
-            <h2 className="text-gray-900 font-extrabold text-5xl">
+            <h2 className="text-gray-400 font-extrabold text-5xl">
               {weather?.location?.name}
             </h2>
           </div>

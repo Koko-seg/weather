@@ -10,8 +10,7 @@ export const Container = ({ weather }) => {
 
             <h2 className="text-gray-900 font-extrabold text-5xl">
               {weather?.location?.name}
-            </h2>
-          </div>
+            </h2> </div>
           <MapPin className="w-[32px] h-[32px] text-gray-700" />
         </div>
         <img src="/weather/sun.webp" className="w-[274px] h-[274px] m-auto" />

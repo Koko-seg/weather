@@ -56,15 +56,18 @@ export default function Home() {
   };
 
   return (
-    <div className="flex w-[100wv] h-[100vh]">
+    <div className="flex w-screen h-screen">
       <div className="bg-[#f3f4f6] w-[50%]  relative flex flex-col items-center justify-center ">
-        <div className="relative  w-[800px] h-[1200px]  my-0 mx-auto flex items-center justify-center">
+        <div className="relative w-[800px] h-[1200px] my-0 mx-auto flex flex-col items-center justify-start pt-10">
+          <div className="w-full flex justify-center z-30">
           <Search
             handleChange={handleChange}
             getWeather={getWeather}
             setCity={setCity}
             filteredCity={filteredCity}
+            setFilteredCity={setFilteredCity}
           />
+          </div>
           <img
             src="/weather/sun-little.webp"
             className="w-[174px] h-[174px] absolute top-[100px] left-30 z-0"
@@ -77,11 +80,12 @@ export default function Home() {
       <Circle />
 
       <div className="bg-[#0F141E] w-[50%] relative flex flex-col items-center justify-center">
-        <div className="relative  w-[800px] h-[1200px] my-0 mx-auto flex items-center justify-center">
+        <div className="relative  w-[800px] h-[1200px] my-0 mx-auto flex flex-col items-center justify-start pt-10">
           <img
             src="/weather/moon-little.webp"
             className="w-[174px] h-[174px] absolute box-border border-none m-auto block bottom-[100px] right-30"
           />
+          
           <Moon weather={weather} />
         </div>
       </div>
