@@ -24,9 +24,10 @@ export const Container = ({ weather }) => {
             {weather?.forecast?.forecastday[0]?.day?.condition?.text}
           </h3>
           <img
-            className=""
-            src={weather?.forecast?.forecastday[0]?.day?.condition?.icon}
-            alt="jijgee"
+           
+            className="w-16 h-16"
+            src={`https:${weather.current.condition.icon}`}
+            alt={weather.current.condition.text}
           />
         </div>
         <div className="flex items-center justify-between">
