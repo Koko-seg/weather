@@ -56,9 +56,9 @@ export default function Home() {
   };
 
   return (
-    <div className="flex w-screen h-screen">
-      <div className="bg-[#f3f4f6] w-[50%]  relative flex flex-col items-center justify-center ">
-        <div className="relative w-[800px] h-[1200px] my-0 mx-auto flex flex-col items-center justify-start pt-10">
+    <div className="flex flex-col md:flex-row w-screen h-screen">
+      <div className="bg-[#f3f4f6] md:w-1/2 w-full  relative flex flex-col items-center justify-center ">
+        <div className="relative md:w-[800px] w-full h-[1200px] my-0 mx-auto flex flex-col items-center justify-start pt-10">
           <div className="w-full flex justify-center z-30">
           <Search
             handleChange={handleChange}
@@ -70,7 +70,7 @@ export default function Home() {
           </div>
           <img
             src="/weather/sun-little.webp"
-            className="w-[174px] h-[174px] absolute top-[100px] left-30 z-0"
+            className="w-[174px] h-[174px] absolute top-[100px] left-8 md:left-30 z-0"
           />
 
           <Container weather={weather} />
@@ -79,11 +79,11 @@ export default function Home() {
 
       <Circle />
 
-      <div className="bg-[#0F141E] w-[50%] relative flex flex-col items-center justify-center">
-        <div className="relative  w-[800px] h-[1200px] my-0 mx-auto flex flex-col items-center justify-start pt-10">
+      <div className="bg-[#0F141E] md:w-1/2 w-full relative flex flex-col items-center justify-center">
+        <div className="relative  md:w-[800px] w-full h-[1200px] my-0 mx-auto flex flex-col items-center justify-start pt-10">
           <img
             src="/weather/moon-little.webp"
-            className="w-[174px] h-[174px] absolute box-border border-none m-auto block bottom-[100px] right-30"
+            className="w-[174px] h-[174px] absolute box-border border-none m-auto block bottom-[100px] right-8 md:right-30"
           />
           
           <Moon weather={weather} />
