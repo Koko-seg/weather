@@ -76,11 +76,11 @@ export default function Home() {
           <Container weather={weather} />
         </div>
       </div>
-
+      <div className="hidden md:flex items-center justify-center">
       <Circle />
-
+      </div>
       <div className="bg-[#0F141E] md:w-1/2 w-full relative flex flex-col items-center justify-center">
-        <div className="relative  md:w-[800px] w-full h-[1200px] my-0 mx-auto flex flex-col items-center justify-start pt-10">
+        <div className="relative  md:w-[800px] w-full h-[1200px] my-0 mx-auto flex flex-col items-center justify-start pt-10 px-4">
           <img
             src="/weather/moon-little.webp"
             className="w-[174px] h-[174px] absolute box-border border-none m-auto block bottom-[100px] right-8 md:right-30"
