@@ -41,3 +41,5 @@ export const Moon = ({ weather }) => {
     </div>
   );
 };
+
+//moon heseg useg sain hrah
