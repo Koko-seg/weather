@@ -42,4 +42,3 @@ export const Moon = ({ weather }) => {
   );
 };
 
-//moon heseg useg sain hrah
